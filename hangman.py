@@ -201,7 +201,7 @@ class HangmanArena:
         footer = tk.Frame(self.root, bg=C["bg"])
         footer.pack(fill="x", padx=24, pady=(0, 13))
         tk.Label(footer, text="SHORTCUTS", bg=C["bg"], fg=C["muted"], font=(FONT, 8, "bold")).pack(side="left")
-        tk.Label(footer, text="A–Z  guess letter     H  hint     N  new word",
+        tk.Label(footer, text="A–Z  guess letter     F1  hint     F2  new game",
                  bg=C["bg"], fg=C["muted"], font=(FONT, 9)).pack(side="left", padx=14)
         tk.Label(footer, text="OFFLINE  •  NO EXTRA PACKAGES",
                  bg=C["bg"], fg=C["teal"], font=(FONT, 8, "bold")).pack(side="right")
@@ -283,12 +283,12 @@ class HangmanArena:
         self.status_label.pack(fill="x", padx=16, pady=(0, 7))
         controls = tk.Frame(parent, bg=C["panel"])
         controls.pack(fill="x", padx=14, pady=(0, 12))
-        self.hint_button = tk.Button(controls, text="✦  Hint  [H]", command=self.hint,
+        self.hint_button = tk.Button(controls, text="✦  Hint  [F1]", command=self.hint,
                                     font=(FONT, 9, "bold"), bg=C["teal_dark"], fg=C["teal"],
                                     activebackground=C["teal"], activeforeground=C["bg"],
                                     relief="flat", cursor="hand2", padx=8, pady=8)
         self.hint_button.pack(side="left", fill="x", expand=True, padx=(0, 4))
-        tk.Button(controls, text="↻  New Game  [N]", command=self.new_game,
+        tk.Button(controls, text="↻  New Game  [F2]", command=self.new_game,
                   font=(FONT, 9, "bold"), bg=C["teal"], fg=C["bg"],
                   activebackground="#A6FFF0", relief="flat", cursor="hand2",
                   padx=8, pady=8).pack(side="left", fill="x", expand=True, padx=4)
@@ -473,11 +473,12 @@ class HangmanArena:
 
     def on_key(self, event):
         key = event.keysym.lower()
+        # Reserve F1/F2 for actions so every A-Z key remains available for guessing.
         if len(key) == 1 and key in string.ascii_lowercase:
             self.guess(key)
-        elif key == "h":
+        elif event.keysym == "F1":
             self.hint()
-        elif key == "n":
+        elif event.keysym == "F2":
             self.new_game()
 
     def show_help(self):
