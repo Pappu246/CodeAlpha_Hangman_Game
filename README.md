@@ -34,8 +34,8 @@ This opens the graphical game window. Run hangman.py to play; test_hangman.py is
 1. Select Easy, Medium, or Hard in the dropdown.
 2. Read the clue and choose a letter with the on-screen keyboard or your physical keyboard.
 3. Each incorrect letter uses one of six lives.
-4. Click Hint or press H to reveal one hidden letter. A hint reduces your final score by five points.
-5. Solve the word to win. Choose New Game or press N for another round.
+4. Click Hint or press F1 to reveal one hidden letter. A hint reduces your final score by five points.
+5. Solve the word to win. Choose New Game or press F2 for another round.
 6. Build a win streak and improve your personal best.
 
 ## Run tests
